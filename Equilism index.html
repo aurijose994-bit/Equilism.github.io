@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equilism — Beyond Capitalism & Socialism</title>
+  <style>
+    /* CSS Variables & Theme Setup */
+    :root {
+      --bg-dark: #0a0e17;
+      --bg-card: #131b2e;
+      --bg-hover: #1c2742;
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+      --gold-accent: #f59e0b;
+      --gold-hover: #d97706;
+      --teal-accent: #10b981;
+      --border-color: #1e293b;
+      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-stack);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: var(--gold-accent);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    a:hover {
+      color: var(--gold-hover);
+    }
+
+    /* Header & Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: rgba(10, 14, 23, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #fff;
+    }
+
+    .logo-symbol {
+      width: 28px;
+      height: 28px;
+      border: 2px solid var(--gold-accent);
+      transform: rotate(45deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-symbol::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background-color: var(--gold-accent);
+      border-radius: 50%;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: var(--text-main);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid var(--gold-accent);
+      color: var(--gold-accent);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #ffffff 0%, var(--text-muted) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .hero-author {
+      font-size: 0.9rem;
+      color: var(--gold-accent);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* Core Philosophy Section */
+    .philosophy {
+      max-width: 1100px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+      font-size: 2rem;
+      color: #fff;
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+    }
+
+    .synthesis-container {
+      display: grid;
+      grid-template-columns: 1fr 120px 1fr;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .synthesis-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .synthesis-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-capitalism h3 { color: #60a5fa; }
+    .card-socialism h3 { color: #f87171; }
+
+    .synthesis-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .synthesis-divider {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .synthesis-badge {
+      background: var(--gold-accent);
+      color: #000;
+      font-weight: 700;
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+    }
+
+    .equilism-quote {
+      margin-top: 3rem;
+      background: linear-gradient(135deg, rgba(19, 27, 46, 0.8), rgba(28, 39, 66, 0.8));
+      border-left: 4px solid var(--gold-accent);
+      padding: 2rem;
+      border-radius: 0 12px 12px 0;
+      font-style: italic;
+    }
+
+    .equilism-quote blockquote {
+      font-size: 1.1rem;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+    }
+
+    .equilism-quote cite {
+      font-style: normal;
+      font-size: 0.9rem;
+      color: var(--gold-accent);
+      font-weight: 600;
+    }
+
+    /* Manifesto Section */
+    .manifesto {
+      max-width: 1100px;
+      margin: 6rem auto;
+      padding: 0 2rem;
+    }
+
+    .manifesto-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .search-bar {
+      width: 100%;
+      padding: 1rem 1.25rem;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: var(--text-main);
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .search-bar:focus {
+      border-color: var(--gold-accent);
+    }
+
+    .chapter-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .filter-btn {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background-color: var(--gold-accent);
+      color: #000;
+      border-color: var(--gold-accent);
+      font-weight: 600;
+    }
+
+    .manifesto-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .point-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: transform 0.2s, border-color 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .point-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold-accent);
+    }
+
+    .point-number {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--gold-accent);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .point-title {
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+
+    .point-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      flex-grow: 1;
+    }
+
+    /* Newsletter Section */
+    .newsletter {
+      background-color: var(--bg-card);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 5rem 2rem;
+      text-align: center;
+      margin-top: 6rem;
+    }
+
+    .newsletter-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .newsletter h2 {
+      font-size: 2rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .newsletter p {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .newsletter-form input[type="email"] {
+      flex: 1;
+      padding: 0.85rem 1rem;
+      background-color: var(--bg-dark);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .newsletter-form input[type="email"]:focus {
+      border-color: var(--gold-accent);
+    }
+
+    .newsletter-form button {
+      background-color: var(--gold-accent);
+      color: #000;
+      font-weight: 700;
+      border: none;
+      padding: 0.85rem 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .newsletter-form button:hover {
+      background-color: var(--gold-hover);
+    }
+
+    .form-message {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    /* Footer */
+    footer {
+      padding: 3rem 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+      .synthesis-container {
+        grid-template-columns: 1fr;
+      }
+      .synthesis-divider {
+        margin: 1rem 0;
+      }
+      .newsletter-form {
+        flex-direction: column;
+      }
+      header {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <div class="logo-symbol"></div>
+      <span>EQUILISM</span>
+    </div>
+    <nav>
+      <a href="#philosophy">Philosophy</a>
+      <a href="#manifesto">100-Point Manifesto</a>
+      <a href="#subscribe">Join Movement</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <span class="hero-badge">Political & Economic Synthesis</span>
+    <h1>Beyond Capitalism & Socialism</h1>
+    <p>A systematic framework uniting market dynamism with baseline human dignity to architect a resilient, modern civic order.</p>
+    <div class="hero-author">Authored & Formulated by Auri José Bello Guerrero</div>
+  </section>
+
+  <section id="philosophy" class="philosophy">
+    <div class="section-title">
+      <h2>The Ideology of Equilibrium</h2>
+      <p>Resolving two centuries of binary conflict through functional balance.</p>
+    </div>
+
+    <div class="synthesis-container">
+      <div class="synthesis-card card-capitalism">
+        <h3>Capitalism: The Engine</h3>
+        <p>Drives technological invention, efficient resource allocation, individual ambition, and rapid economic growth. Unchecked, it crashes into systemic inequality, monopolies, and environmental damage.</p>
+      </div>
+
+      <div class="synthesis-divider">
+        <span class="synthesis-badge">EQUILIBRIUM</span>
+      </div>
+
+      <div class="synthesis-card card-socialism">
+        <h3>Socialism: The Foundation</h3>
+        <p>Guarantees human baseline survival, preserves ecological health, funds breakthrough science, and ensures broad prosperity. Isolated, it risks bureaucratic paralysis and economic stagnation.</p>
+      </div>
+    </div>
+
+    <div class="equilism-quote">
+      <blockquote>
+        "We do not seek to destroy the market; we seek to unleash it from monopoly and greed. We do not seek to enforce total conformity; we seek to guarantee every human being a dignified baseline from which they can boldly dare, create, and build."
+      </blockquote>
+      <cite>— Auri José Bello Guerrero</cite>
+    </div>
+  </section>
+
+  <section id="manifesto" class="manifesto">
+    <div class="section-title">
+      <h2>The 100-Point Manifesto</h2>
+      <p>A pragmatic blueprint for civic renewal and balanced progress.</p>
+    </div>
+
+    <div class="manifesto-controls">
+      <input type="text" id="searchInput" class="search-bar" placeholder="Search points, keywords, or topics (e.g., 'Student Loans', 'AI', 'Solar')...">
+      <div class="chapter-filters" id="chapterFilters">
+        <button class="filter-btn active" data-chapter="all">All Points</button>
+        <button class="filter-btn" data-chapter="1">I. Education</button>
+        <button class="filter-btn" data-chapter="2">II. Tech & Science</button>
+        <button class="filter-btn" data-chapter="3">III. Environment</button>
+        <button class="filter-btn" data-chapter="4">IV. Healthcare</button>
+        <button class="filter-btn" data-chapter="5">V. Infrastructure</button>
+        <button class="filter-btn" data-chapter="6">VI. Democratic Capitalism</button>
+        <button class="filter-btn" data-chapter="7">VII. Anti-Corruption</button>
+        <button class="filter-btn" data-chapter="8">VIII. Culture</button>
+        <button class="filter-btn" data-chapter="9">IX. Quality of Life</button>
+        <button class="filter-btn" data-chapter="10">X. Resilience</button>
+      </div>
+    </div>
+
+    <div class="manifesto-grid" id="manifestoGrid">
+      </div>
+  </section>
+
+  <section id="subscribe" class="newsletter">
+    <div class="newsletter-container">
+      <h2>Join the Civic Renewal</h2>
+      <p>Subscribe to receive updates, detailed essays, and practical implementation guides on Equilism directly from Auri José Bello Guerrero.</p>
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" id="emailInput" placeholder="Enter your email address" required>
+        <button type="submit">Subscribe</button>
+      </form>
+      <div class="form-message" id="formMessage"></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; Equilism Manifesto — Authored & Formulated by Auri José Bello Guerrero. All rights reserved.</p>
+  </footer>
+
+  <script>
+    [span_0](start_span)[span_1](start_span)[span_2](start_span)[span_3](start_span)[span_4](start_span)[span_5](start_span)[span_6](start_span)[span_7](start_span)[span_8](start_span)[span_9](start_span)[span_10](start_span)// Sample representation of the 100 points across chapters[span_0](end_span)[span_1](end_span)[span_2](end_span)[span_3](end_span)[span_4](end_span)[span_5](end_span)[span_6](end_span)[span_7](end_span)[span_8](end_span)[span_9](end_span)[span_10](end_span)
+    const manifestoData = [
+      [span_11](start_span)// Chapter I[span_11](end_span)
+      { ch: 1, num: 1, title: "Universal Free Public School Lunches", desc: "Guarantee healthy, nutritious breakfast and lunch for every K-12 public school student nationwide." },
+      { ch: 1, num: 2, title: "Expansion of Vocational and Trade Education", desc: "Elevate skilled trade tracks to equal standing with traditional four-year college degrees." },
+      { ch: 1, num: 3, title: "Mandatory Financial Literacy Curriculum", desc: "Require high school courses on budgeting, taxes, credit building, and basic investing." },
+      { ch: 1, num: 4, title: "Abolition of Interest on Federal Student Loans", desc: "Forgive existing interest and cap future interest at zero percent for federal student loans." },
+      { ch: 1, num: 7, title: "National Youth Public Service Corps", desc: "A voluntary two-year civic service program offering full college tuition coverage in exchange for community work." },
+      
+      [span_12](start_span)// Chapter II[span_12](end_span)
+      { ch: 2, num: 11, title: "Universal High-Speed Rural Fiber Infrastructure", desc: "Treat broadband internet as a public utility to bridge the digital divide." },
+      { ch: 2, num: 13, title: "Digital Privacy & Data Ownership Framework", desc: "Declare personal digital data as individual property and ban unauthorized corporate harvesting." },
+      { ch: 2, num: 14, title: "National AI Safety Institute", desc: "Establish an independent institute dedicated to evaluating AI safety and public-interest tools." },
+      { ch: 2, num: 20, title: "Accelerated Commercial Fusion Energy Initiative", desc: "Provide matching capital for public and private fusion energy projects." },
+
+      [span_13](start_span)// Chapter III[span_13](end_span)
+      { ch: 3, num: 21, title: "10 Billion Native Tree Reforestation Initiative", desc: "Plant native trees across public lands and urban heat islands over the next decade." },
+      { ch: 3, num: 23, title: "Fast-Tracking Clean Energy Permitting", desc: "Streamline environmental review processes for clean energy generation projects." },
+      { ch: 3, num: 28, title: "Direct Point-of-Sale Heat Pump & Solar Subsidies", desc: "Offer immediate rebates for residential solar installations and energy-efficient heat pumps." },
+
+      [span_14](start_span)// Chapter IV[span_14](end_span)
+      { ch: 4, num: 31, title: "Out-of-Pocket Prescription Drug Price Caps", desc: "Cap costs for essential life-saving medications like insulin and inhalers." },
+      { ch: 4, num: 32, title: "Universal Free Preventive Physical & Dental Care", desc: "Provide annual physical exams and basic dental cleanings at zero out-of-pocket cost." },
+      { ch: 4, num: 36, title: "Complete Elimination of Medical Emergency Bills", desc: "Ban out-of-network emergency room billing and standardize fee structures nationwide." },
+
+      [span_15](start_span)// Chapter V[span_15](end_span)
+      { ch: 5, num: 41, title: "Intercity High-Speed Rail Corridor Network", desc: "Construct electric high-speed passenger rail links connecting major regional economic hubs." },
+      { ch: 5, num: 43, title: "Complete Lead Water Service Line Replacement", desc: "Replace 100 percent of remaining municipal lead water pipes within four years." },
+
+      [span_16](start_span)// Chapter VI[span_16](end_span)
+      { ch: 6, num: 51, title: "Single-Digital Application for Small Business Startups", desc: "Streamline federal, state, and local startup permits into a low-cost portal." },
+      { ch: 6, num: 53, title: "Universal Paid Family and Medical Leave", desc: "Mandate twelve weeks of paid, federally supported leave for new parents or medical recovery." },
+      { ch: 6, num: 55, title: "Inflation-Indexed National Minimum Wage", desc: "Index federal minimum wage directly to regional cost-of-living metrics annually." },
+      { ch: 6, num: 59, title: "Corporate Tax Incentives for Four-Day Workweeks", desc: "Incentivize enterprises offering voluntary 32-hour workweeks without pay reductions." },
+
+      [span_17](start_span)// Chapter VII[span_17](end_span)
+      { ch: 7, num: 62, title: "Automated Pre-Filled Tax Filing System", desc: "Require the IRS to provide citizens with simple, pre-filled tax returns for review." },
+      { ch: 7, num: 63, title: "Ten-Year Lobbying Ban for Ex-Government Officials", desc: "Prohibit elected officials and agency heads from becoming paid lobbyists for a decade." },
+      { ch: 7, num: 65, title: "Open Public Digital Spending Portal", desc: "Publish a real-time online ledger tracking every federal expenditure and contract." },
+
+      [span_18](start_span)// Chapter VIII[span_18](end_span)
+      { ch: 8, num: 72, title: "Universal Free Admission Days at Cultural Museums", desc: "Partner with cultural museums and historic sites to offer regular free-admission days." },
+      { ch: 8, num: 73, title: "Public Libraries Modernization as Digital Hubs", desc: "Finance local library upgrades to provide free high-speed internet and co-working spaces." },
+
+      [span_19](start_span)// Chapter IX[span_19](end_span)
+      { ch: 9, num: 81, title: "Election Day Federal Public Holiday", desc: "Establish national Election Day as an official public holiday with paid time off." },
+      { ch: 9, num: 84, title: "Nationwide Ban on Hidden 'Junk Fees'", desc: "Require upfront pricing inclusive of all fees across travel, ticketing, and housing." },
+      { ch: 9, num: 85, title: "Comprehensive Right-to-Repair Laws", desc: "Require manufacturers to sell replacement parts, manuals, and diagnostic tools to the public." },
+      { ch: 9, num: 86, title: "One-Click Subscription Cancellation Standards", desc: "Mandate that online subscriptions must be cancellable online instantly with a single click." },
+
+      [span_20](start_span)// Chapter X[span_20](end_span)
+      { ch: 10, num: 91, title: "Strategic Medical & Semiconductor Stockpiles", desc: "Maintain robust domestic reserves of critical pharmaceutical ingredients and microchips." },
+      { ch: 10, num: 100, title: "The Perpetual Equilibrium Commitment", desc: "Embed an enduring leadership duty to leave the country calmer, cleaner, and more prosperous." }
+    ];
+
+    // DOM Elements
+    const grid = document.getElementById('manifestoGrid');
+    const searchInput = document.getElementById('searchInput');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const newsletterForm = document.getElementById('newsletterForm');
+    const formMessage = document.getElementById('formMessage');
+
+    let currentChapter = 'all';
+
+    // Render Points
+    function renderPoints() {
+      const query = searchInput.value.toLowerCase();
+      grid.innerHTML = '';
+
+      const filtered = manifestoData.filter(pt => {
+        const matchesChapter = (currentChapter === 'all' || pt.ch.toString() === currentChapter);
+        const matchesQuery = pt.title.toLowerCase().includes(query) || pt.desc.toLowerCase().includes(query);
+        return matchesChapter && matchesQuery;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 3rem;">No manifesto points matching your query.</div>';
+        return;
+      }
+
+      filtered.forEach(pt => {
+        const card = document.createElement('div');
+        card.className = 'point-card';
+        card.innerHTML = `
+          <div class="point-number">Point ${pt.num} — Chapter ${pt.ch}</div>
+          <div class="point-title">${pt.title}</div>
+          <div class="point-desc">${pt.desc}</div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Filter Button Clicks
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentChapter = btn.getAttribute('data-chapter');
+        renderPoints();
+      });
+    });
+
+    // Search Input Listener
+    searchInput.addEventListener('input', renderPoints);
+
+    // Newsletter Submission Handler
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('emailInput').value;
+      
+      if (email) {
+        formMessage.style.color = 'var(--teal-accent)';
+        formMessage.textContent = `Thank you for subscribing! A confirmation has been registered for ${email}.`;
+        formMessage.style.display = 'block';
+        newsletterForm.reset();
+      }
+    });
+
+    // Initial Render
+    renderPoints();
+  </script>
+</body>
+</html>
